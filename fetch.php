@@ -17,12 +17,18 @@ if ($conn->connect_error) {
 // جلب قيمة كود العميل من المتغيرات العامة
 $client_code = $_GET["client_code"];
 
-// جلب رقم المستخدم من متغيرات جلسة
+// جلب رقم المستخدم وكود الفرع وكود القطاع من متغيرات جلسة
 session_start();
 $user_id = $_SESSION["user_id"];
+$branch_code = $_SESSION["branch_code"];
+$sector_code = $_SESSION["sector_code"];
+// $user_name = $_SESSION["user_name"];
 
-// إنشاء استعلام للبحث عن بيانات العميل بناء على كود العميل
+// إنشاء استعلام للبحث عن بيانات العميل بناء على كود العميل وتطابق كود الفرع وكود القطاع بين العميل والمستخدم
 $sql = "SELECT * FROM clients WHERE client_code = '$client_code'";
+$sql = "SELECT * FROM clients WHERE client_code = '$client_code' AND branch_code = '$branch_code' AND sector_code = '$sector_code'";
+// $sql = "SELECT * FROM users WHERE user_name = '$user_name'";
+
 
 // تنفيذ الاستعلام وجلب النتيجة
 $result = $conn->query($sql);
@@ -41,6 +47,7 @@ if ($result->num_rows > 0) {
         "client_address" => $row["client_address"],
         "sector_name" => $row["sector_name"],
         "branch_code" => $row["branch_code"]
+        // "user_name" => $row["user_name"]
     );
 
     // إنشاء استعلام آخر للبحث عن ملاحظات المستخدم على العميل بناء على كود العميل ورقم المستخدم
@@ -69,6 +76,8 @@ if ($result->num_rows > 0) {
         "error" => "لا يوجد عميل بهذا الكود"
     );
 }
+
+
 
 // إغلاق الاتصال بقاعدة البيانات
 $conn->close();
