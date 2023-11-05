@@ -37,8 +37,9 @@
 <body>
     <form action="process.php" method="post">
         <!-- حقل لإدخال كود العميل -->
-        <label for="client_code">أدخل كود العميل (11 رقم):</label>
-        <input type="text" id="client_code" name="client_code" maxlength="11" minlength="11" 
+        <label for="client_code">أدخل كود العميل (9 أرقام باللغة الانجليزية):</label>
+        <input type="text" id="client_code" name="client_code" maxlength="11" minlength="11"
+         
         title=" كود العميل يجب ان يكون 11 رقم ويبدأ بـ 11 "pattern="[0-9]{11}" required>
         <!-- حقل لعرض كود العميل -->
         <label for="client_code_display">كود العميل:</label>
@@ -68,7 +69,10 @@
         <input type="hidden" id="edited" name="edited" value="0">
         <!-- زر لإرسال المعلومات إلى قاعدة البيانات أو إجراء بحث جديد -->
         <button type="submit" id="submit">إرسال</button>
+         <!-- حقل لعرض اسم المستخدم  -->
+
     </form>
+
 
     <!-- استخدام js لإجراء بعض الوظائف -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
