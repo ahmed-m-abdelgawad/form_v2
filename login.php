@@ -40,7 +40,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         $_SESSION["user_id"] = $row["user_id"];
         $_SESSION["user_name"] = $row["user_name"];
         $_SESSION["branch_code"] = $row["branch_code"];
-        $_SESSION["sector_name"] = $row["sector_name"];
+        $_SESSION["sector_code"] = $row["sector_code"];
+        $_SESSION["role"] = $row["role"];
 
         // إعادة توجيه المستخدم إلى صفحة index
         header("Location: index.php");
@@ -52,6 +53,10 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         $_SESSION["error"] = "البريد الإلكتروني أو كلمة المرور غير صحيحة";
     }
 }
+
+// إغلاق الاتصال بقاعدة البيانات
+$conn->close();
+
 
 ?>
 
